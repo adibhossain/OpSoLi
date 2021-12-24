@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Top Stories</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/OpSoLi.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #212529;">
+            <div class="container">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                        <img src="assets/plus.ico" alt="plus">
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li class="dropdown-item">Create:</li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Story</a></li>
+                    <li><a class="dropdown-item" href="#">Character</a></li>
+                    <li><a class="dropdown-item" href="#">World</a></li>
+                    <li><a class="dropdown-item" href="#">Lore</a></li>
+                    <li><a class="dropdown-item" href="#">Misc</a></li>
+                    </ul>
+                </div>
+  
+                <a class="navbar-brand" href="#" onclick="visit('Home Page.html')"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="input-group" id="discover-search-bar">
+                    <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
+                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <option selected>Story</option>
+                        <option value="1">Character</option>
+                        <option value="2">World</option>
+                        <option value="3">Lore</option>
+                        <option value="4">Art</option>
+                        <option value="5">Author</option>
+                        <option value="6">Misc</option>
+                    </select>
+                    <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img src="assets/hashtag.png" alt="hashtag">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li class="dropdown-item">#Today's Trending!</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Dijkstra's Horror(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">2069:The Future(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">Kaya(Character)</a></li>
+                                <li><a class="dropdown-item" href="#">Departure(Art)</a></li>
+                                <li><a class="dropdown-item" href="#">Dimensions(Worlds)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="assets/favorite.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-out-icon"><a class="nav-link portfolio-link" data-bs-toggle="modal" href="#login"><img src="assets/user.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-in-icon">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img class="propic mx-auto rounded-circle" src="assets/top authors/Kobi Adib.jpg" alt="kobi adib">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout();">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="head2">
+            <div class="container">
+                <div class="masthead-subheading text-uppercase" style="color: white; text-align: left;"><span style="font-size: 3.25rem;">Top Stories</span>
+                    <span style="float: right;">
+                        <div class="btn-group" style="padding: 10px;">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                Sort By
+                            </button>
+                            <ul class="dropdown-menu" style="color: white;">
+                                <li class="dropdown-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                          Rating
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                          Popularity
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                                        <label class="form-check-label" for="exampleRadios3">
+                                          Favourited
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-group" style="padding: 10px;">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                Filter
+                            </button>
+                            <ul class="dropdown-menu" style="color: white;">
+                                <li class="dropdown-item">Genres:</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="dropdown-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                          Fantasy
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                          Sci-Fi
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                        <label class="form-check-label" for="defaultCheck3">
+                                          Medieval
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                        <label class="form-check-label" for="defaultCheck4">
+                                          Supernatural
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                                        <label class="form-check-label" for="defaultCheck5">
+                                          Thriller
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
+                                        <label class="form-check-label" for="defaultCheck6">
+                                          Psychological
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
+                                        <label class="form-check-label" for="defaultCheck7">
+                                          Horror
+                                        </label>
+                                      </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="dropdown-item">Exclude:</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="dropdown-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck8">
+                                        <label class="form-check-label" for="defaultCheck8">
+                                          R 18+
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck9">
+                                        <label class="form-check-label" for="defaultCheck9">
+                                          Kids
+                                        </label>
+                                      </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </header>
+        <!-- Cards of stories -->
+        <section class="page-section" id="main-content">
+            <div class="container">
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="assets/top stories/1022-6000x3376.jpg" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">The Northern Lights <span style="float: right;">#1</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Zippy
+                        <span style="float: right;">
+                            <span style="color: white;">70</span> Likes
+                            <span style="color: white;"> 4</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="assets/top stories/1026-4621x3070.jpg" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">2069: The Future <span style="float: right;">#2</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Noobmaster
+                        <span style="float: right;">
+                            <span style="color: white;">69</span> Likes
+                            <span style="color: white;"> 5</span> Dislikes
+                            <span style="color: white;"> 12</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="assets/top stories/1028-5184x3456.jpg" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Desolate: The Dystopia <span style="float: right;">#3</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Chronic Depression
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=1" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#4</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=2" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#5</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=3" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#6</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=4" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#7</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=5" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#8</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=6" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#9</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card mb-3 bg-dark" style="color: white;">
+                    <img class="card-img-top" src="https://picsum.photos/894/200?random=10" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem Title <span style="float: right;">#10</span></h5>
+                      <p class="card-text">This is a story about Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum vel ipsum eveniet eum officiis blanditiis repellat, delectus tempora quis ad, est saepe consectetur assumenda ratione aliquam autem, alias aspernatur accusantium!</p>
+                      <p class="card-text"><small class="text-muted">
+                        Lorem Author Lorem
+                        <span style="float: right;">
+                            <span style="color: white;">55</span> Likes
+                            <span style="color: white;"> 8</span> Dislikes
+                            <span style="color: white;"> 15</span> Favourited
+                        </span>
+                      </small></p>
+                      <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                      <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                      <a href="" class="react" style="float: right;"><img src="assets/reacts/right-arrow.png" alt=""></a>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; OpSoLi 2021</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Help</a>
+                        <a class="link-dark text-decoration-none" href="#!">Report</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Log In modal popup-->
+        <div class="portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content mx-auto" style="text-align: left; width: 80%; padding: 0px; background-image: url('assets/img/Login.JPG'); background-repeat: no-repeat; background-size: 50%; height: 387px;">
+                  <div class="container">
+                      <div class="row justify-content-center">
+                          <div class="col-lg-12">
+                              <div class="modal-body">
+                                  <!-- Login & Sign Up details-->
+                                  <div class="container">
+                                      <div class="row body d-md-flex align-items-center justify-content-between">
+                                          <div class="col-6">
+                                              <div class="box-1 mt-md-0 mt-2" style="text-align: center;">
+                                                  <h3 class="masthead-heading py-3" id="signup-title">New here ? <br> Start your journey with us today !</h3>
+                                                  <button type="submit" class="btn btn-primary" onclick="document.location.href='sign up.html'">Sign Up</button>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class=" box-2 d-flex flex-column h-100" style="margin-left: 15px;">
+                                                  <h3 class="masthead-heading py-3" id="login-title" style="text-align: center; color: #212529;">Welcome Back !</h3>
+                                                  <form style="padding: 2px;">
+                                                      <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                      </div>
+                                                      <div class="form-group pt-3">
+                                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                      </div>
+                                                      <div class="form-group form-check pt-3">
+                                                        <input type="checkbox" class="form-check-input" id="remember-me">
+                                                        <label class="form-check-label" for="remember-me">Remember me</label>
+                                                        <span style="float: right;"><a href="#" id="forgor">Forgot Password?</a></span>
+                                                      </div>
+                                                      <div class="form-group pt-3 wrapper">
+                                                          <div class="custom-control custom-radio custom-control-inline col-2">
+                                                              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                                              <label class="custom-control-label" for="customRadioInline1">Author</label>
+                                                          </div>
+                                                          <div class="custom-control custom-radio custom-control-inline col-2">
+                                                              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                                              <label class="custom-control-label" for="customRadioInline2">Admin</label>
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <div class="pt-3" style="text-align: center;"><button type="button" class="btn btn-primary" onclick="login();">Log In</button></div>
+                                                  </form>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

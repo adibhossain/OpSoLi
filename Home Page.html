@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Home</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/OpSoLi.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                        <img src="assets/plus.ico" alt="plus">
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li class="dropdown-item">Create:</li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Story</a></li>
+                    <li><a class="dropdown-item" href="#">Character</a></li>
+                    <li><a class="dropdown-item" href="#">World</a></li>
+                    <li><a class="dropdown-item" href="#">Lore</a></li>
+                    <li><a class="dropdown-item" href="#">Misc</a></li>
+                    </ul>
+                </div>
+  
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="input-group" id="discover-search-bar">
+                    <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
+                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <option selected>Story</option>
+                        <option value="1">Character</option>
+                        <option value="2">World</option>
+                        <option value="3">Lore</option>
+                        <option value="4">Art</option>
+                        <option value="5">Author</option>
+                        <option value="6">Misc</option>
+                    </select>
+                    <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img src="assets/hashtag.png" alt="hashtag">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li class="dropdown-item">#Today's Trending!</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Dijkstra's Horror(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">2069:The Future(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">Kaya(Character)</a></li>
+                                <li><a class="dropdown-item" href="#">Departure(Art)</a></li>
+                                <li><a class="dropdown-item" href="#">Dimensions(Worlds)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="assets/favorite.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-out-icon"><a class="nav-link portfolio-link" data-bs-toggle="modal" href="#login"><img src="assets/user.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-in-icon">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img class="propic mx-auto rounded-circle" src="assets/top authors/Kobi Adib.jpg" alt="kobi adib">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout();">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead" style="background-image: url(assets/img/header-bg.jpg);">
+            <div class="container">
+                <div class="masthead-heading text-uppercase" style="color: #ffc800">Welcome Author!</div>
+                <div class="masthead-subheading" style="font-size: 1.75rem;">Trying to write a novel but lack a few elements to it?<br>Well introducing OpSoLi which is a social platform where aspiring writers collaborate and share their works to create novels, stories, comics etc. in an open source environment.</div>
+                <br>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#top-stories"><img src="assets/header icons/book64.png" alt=""></a>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#portfolio"><img src="assets/header icons/paint64.png" alt=""></a>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#top-characters"><img src="assets/header icons/cinema64.png" alt=""></a>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#top-worlds"><img src="assets/header icons/treasure-map64.png" alt=""></a>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#top-lores"><img src="assets/header icons/scroll64.png" alt=""></a>
+                <a class="btn btn-link btn-xl text-uppercase" style="text-decoration: none;" href="#top-authors"><img src="assets/header icons/writing64.png" alt=""></a>
+            </div>
+        </header>
+        <!-- Top Stories-->
+        <section class="page-section" id="top-stories">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top stories.html');">Top Stories</a></h2>
+                </div>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top stories/1022-6000x3376.jpg" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 style="color: white;">The Nothern Lights</h5>
+                          <p style="color: white;">Lorem Author Zippy</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top stories/1026-4621x3070.jpg" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>2069 : The Future</h5>
+                          <p>Lorem Author Noobmaster</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top stories/1028-5184x3456.jpg" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Desolate : The Dystopia</h5>
+                          <p>Lorem Author Chronic Depression</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+        </section>
+        <!-- Top Arts Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="">Top Arts</a></h2>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_cherry_and_lake.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Cherry and Lake</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 2-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_departure.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Departure</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_horizon.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Horizon</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <!-- Portfolio item 4-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_moonlight.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Moonlight</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                        <!-- Portfolio item 5-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_pink_sunset.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Pink Sunset</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- Portfolio item 6-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/top arts/rsz_string_lights.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">String Lights</div>
+                                <div class="portfolio-caption-subheading text-muted">Suhayr Arafi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Top Characters-->
+        <section class="page-section" id="top-characters">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="">Top Characters</a></h2>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top characters/Kaya.JPG" alt="..." />
+                            <h4>Kaya</h4>
+                            <p class="text-muted">Suhayr Arafi</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top characters/L.JPG" alt="..." />
+                            <h4>L. Lawliet</h4>
+                            <p class="text-muted">Takeshi Obata</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top characters/Lelouch.JPG" alt="..." />
+                            <h4>Lelouch Lamperouge</h4>
+                            <p class="text-muted">Majiko!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Top Worlds-->
+        <section class="page-section bg-light" id="top-worlds">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top worlds.html');">Top Worlds</a></h2>
+                </div>
+                <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top worlds/castle.JPG" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 style="color: white;">Decascan Kingdom</h5>
+                          <p style="color: white;">Lorem Author Viscera</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top worlds/mana forest.JPG" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 style="color: white;">Mana Forest</h5>
+                          <p style="color: white;">Lorem Author Woody</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top worlds/portal.jpg" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 style="color: white;">Dimensions</h5>
+                          <p style="color: white;">Lorem Author Gamma</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+        </section>
+        <!-- Top Lores-->
+        <section class="page-section" id="top-lores">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top lores.html');">Top Lores</a></h2>
+                </div>
+                <div id="carouselExampleDark3" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top lores/sapphire beach.JPG" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Sapphire Beach</h5>
+                          <p>Lorem Author Sanders</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top lores/simulated reality.JPG" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 style="color: white;">Reality is simulated</h5>
+                          <p style="color: white;">Lorem Author Matrix</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="sliding-previews">
+                            <img src="assets/top lores/the scribe's woe.jpg" class="d-block w-100 slides" alt="...">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>The Scribe's Woe</h5>
+                          <p>Lorem Author Quills</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark3" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark3" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+        </section>
+        <!-- Top Authors-->
+        <section class="page-section bg-light" id="top-authors">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="">Top Authors</a></h2>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top authors/Casual Adib.jpg" alt="..." />
+                            <h4>Casual Adib</h4>
+                            <p class="text-muted">208 Likes</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/adib_18_h"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/adib.hossain.ah/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/adibhossain8/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top authors/Formal Adib.jpg" alt="..." />
+                            <h4>Formal Adib</h4>
+                            <p class="text-muted">847 Likes</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/adib_18_h"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/adib.hossain.ah/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/adibhossain8/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/top authors/Aussie Adib.jpg" alt="..." />
+                            <h4>Aussie Adib</h4>
+                            <p class="text-muted">543 Likes</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/adib_18_h"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/adib.hossain.ah/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/adibhossain8/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; OpSoLi 2021</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Help</a>
+                        <a class="link-dark text-decoration-none" href="#!">Report</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio item 1 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Cherry and Lake</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_cherry_and_lake.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            08/12/19
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 2 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Departure</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_departure.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            13/09/20
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 3 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Horizon</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_horizon.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            27/04/21
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 4 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Moonlight</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_moonlight.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            15/06/18
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 5 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Pink Sunset</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_pink_sunset.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            07/07/19
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 6 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">String Lights</h2>
+                                    <br>
+                                    <img class="img-fluid d-block mx-auto" src="assets/top arts/rsz_string_lights.jpg" alt="..." />
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Author:</strong>
+                                            Suhayr Arafi
+                                        </li>
+                                        <li>
+                                            <strong>Date:</strong>
+                                            08/05/20
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Closes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Log In modal popup-->
+        <div class="portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-auto" style="text-align: left; width: 80%; padding: 0px; background-image: url('assets/img/Login.JPG'); background-repeat: no-repeat; background-size: 50%; height: 387px;">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="modal-body">
+                                    <!-- Login & Sign Up details-->
+                                    <div class="container">
+                                        <div class="row body d-md-flex align-items-center justify-content-between">
+                                            <div class="col-6">
+                                                <div class="box-1 mt-md-0 mt-2" style="text-align: center;">
+                                                    <h3 class="masthead-heading py-3" id="signup-title">New here ? <br> Start your journey with us today !</h3>
+                                                    <button type="submit" class="btn btn-primary" onclick="document.location.href='sign up.html'">Sign Up</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="box-2 d-flex flex-column h-100" style="margin-left: 15px;">
+                                                    <h3 class="masthead-heading py-3" id="login-title" style="text-align: center; color: #212529;">Welcome Back !</h3>
+                                                    <form style="padding: 2px;">
+                                                        <div class="form-group">
+                                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                        </div>
+                                                        <div class="form-group pt-3">
+                                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                        </div>
+                                                        <div class="form-group form-check pt-3">
+                                                          <input type="checkbox" class="form-check-input" id="remember-me">
+                                                          <label class="form-check-label" for="remember-me">Remember me</label>
+                                                          <span style="float: right;"><a href="#" id="forgor">Forgot Password?</a></span>
+                                                        </div>
+                                                        <div class="form-group pt-3 wrapper">
+                                                            <div class="custom-control custom-radio custom-control-inline col-2">
+                                                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadioInline1">Author</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline col-2">
+                                                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadioInline2">Admin</label>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="pt-3" style="text-align: center;"><button type="button" class="btn btn-primary" onclick="login();">Log In</button></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
+    </body>
+</html>
