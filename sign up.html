@@ -37,6 +37,13 @@
   
                 <a class="navbar-brand" href="#" onclick="visit('index.html');"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
 
+                
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                
                 <div class="input-group" id="discover-search-bar">
                     <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
                     <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
@@ -54,11 +61,6 @@
                     <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item">

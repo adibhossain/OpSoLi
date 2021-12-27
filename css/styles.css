@@ -11958,6 +11958,6 @@ img.propic {
   } */
 
   #searchbar-shower {
-    display: none;
+    display: block;
   }
 }
