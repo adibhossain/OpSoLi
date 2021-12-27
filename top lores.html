@@ -20,7 +20,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #212529;">
             <div class="container">
-                <div class="btn-group">
+                <div class="btn-group" id="plus">
                     <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
                         <img src="assets/plus.ico" alt="plus">
                     </button>
@@ -36,26 +36,29 @@
                 </div>
   
                 <a class="navbar-brand" href="#" onclick="visit('index.html');"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
+
+                <div class="input-group" id="discover-search-bar">
+                  <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
+                  <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
+                      <i class="fa fa-times"></i>
+                  </button>
+                  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                      <option selected>Story</option>
+                      <option value="1">Character</option>
+                      <option value="2">World</option>
+                      <option value="3">Lore</option>
+                      <option value="4">Art</option>
+                      <option value="5">Author</option>
+                      <option value="6">Misc</option>
+                  </select>
+                  <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
+                </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
-                <div class="input-group" id="discover-search-bar">
-                    <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
-                        <i class="fa fa-times"></i>
-                    </button>
-                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                        <option selected>Story</option>
-                        <option value="1">Character</option>
-                        <option value="2">World</option>
-                        <option value="3">Lore</option>
-                        <option value="4">Art</option>
-                        <option value="5">Author</option>
-                        <option value="6">Misc</option>
-                    </select>
-                    <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
-                </div>
+                
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item">
@@ -495,6 +498,10 @@
               </div>
           </div>
       </div>
+      <!-- Back to top button -->
+      <button type="button" class="btn btn-warning btn-floating" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

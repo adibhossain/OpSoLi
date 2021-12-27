@@ -11884,3 +11884,80 @@ img.propic {
   height: 4rem;
   /* border: 0.5rem solid rgba(0, 0, 0, 0.1); */
 }
+
+#searchbar-shower {
+  display: none;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+
+@media (max-width: 500px) {
+  /* add css to fix responsove issures here */
+
+  /*
+  ---------------------------------
+
+  index.html
+
+  -welcome text font bad
+
+  -text padding not okay(upore kete jay)
+
+  -dropdowns not working
+
+  -search bar oddly placed
+
+  -const heights(i.e 400px for carousels) should reduced for phone
+
+  -carousel auto slide changer not working
+
+  -carousel caption not visible
+
+  -next(>) and previous(<) buttons not working
+
+  ---------------------------------
+
+  Top Stories/Worlds/Lores, Search Results
+
+  -text padding not okay(upore kete jay)
+
+  -dropdowns not working
+
+  -like,favourite etc buttons messed up alignment
+  */
+
+  .masthead-heading {
+    font-size: 0.5rem;
+  }
+  .masthead-subheading {
+    font-size: 0.5rem;
+  }
+  div.sliding-previews {
+    height: 150px;
+    max-height: 150px;
+  }
+  
+  img.slides {
+    height: 150px;
+  }
+  
+  
+
+
+  #search-icon {
+    display: none;
+  }
+
+  /* #searcher, #inputGroupSelect04 {
+    
+  } */
+
+  #searchbar-shower {
+    display: none;
+  }
+}

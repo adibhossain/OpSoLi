@@ -20,7 +20,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <div class="btn-group">
+                <div class="btn-group" id="plus">
                     <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
                         <img src="assets/plus.ico" alt="plus">
                     </button>
@@ -36,10 +36,7 @@
                 </div>
   
                 <a class="navbar-brand" href="#page-top"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
+
                 <div class="input-group" id="discover-search-bar">
                     <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
                     <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
@@ -54,8 +51,19 @@
                         <option value="5">Author</option>
                         <option value="6">Misc</option>
                     </select>
-                    <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
+                    <button class="btn btn-link" id="search-icon" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
                 </div>
+
+                <button class="btn btn-link" id="searchbar-shower" onclick="showSearchBar();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                </button>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item">
@@ -719,6 +727,10 @@
                 </div>
             </div>
         </div>
+        <!-- Back to top button -->
+        <button type="button" class="btn btn-warning btn-floating" id="btn-back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
