@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -16,6 +17,21 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+        <script src="js/scripts.js"></script>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyB9Z9B5XgeSkj6zOutMoIXgpEgqSe14DvA",
+                authDomain: "opsoli-18.firebaseapp.com",
+                databaseURL: "https://opsoli-18-default-rtdb.firebaseio.com",
+                projectId: "opsoli-18",
+                storageBucket: "opsoli-18.appspot.com",
+                messagingSenderId: "987624330164",
+                appId: "1:987624330164:web:694248020c8652ee5b98e1",
+                measurementId: "G-M33V6Q2672"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -66,7 +82,7 @@
                     </select>
                     <button class="btn btn-link" id="search-icon" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
                 </div>
-                
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item">
@@ -737,7 +753,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

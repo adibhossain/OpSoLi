@@ -144,6 +144,98 @@ var showSearchBar = function () {
     else document.getElementById('discover-search-bar').style.display = "block";
 };
 
+var signup = function (e) {
+    e.preventDefault();
+
+    var datanotmepty = true;
+
+    var first_name = document.querySelector("input[name='first_name']").value;
+    if(first_name == '') datanotmepty=false;
+
+    var last_name = document.querySelector("input[name='last_name']").value;
+    if(last_name == '') datanotmepty=false;
+
+    var userid = document.querySelector("input[name='userid']").value;
+    if(userid == '') datanotmepty=false;
+
+    var birth_date = document.getElementById('inputGroupSelect02').value + '/'
+               + document.getElementById('inputGroupSelect01').value + '/'
+               + ( parseInt(document.getElementById('inputGroupSelect03').value) + 1990 );
+    if(birth_date == '') datanotmepty=false;
+
+    var nation = document.querySelector("input[name='nation']").value;
+    if(nation == '') datanotmepty=false;
+
+    var religion = document.querySelector("input[name='religion']").value;
+    if(religion == '') datanotmepty=false;
+
+    var work = document.querySelector("input[name='work']").value;
+    if(work == '') datanotmepty=false;
+
+    var email = document.querySelector("input[name='email']").value;
+    if(email == '') datanotmepty=false;
+
+    var phone = document.querySelector("input[name='phone']").value;
+    if(phone == '') datanotmepty=false;
+
+    var fb_id = document.querySelector("input[name='fb-id']").value;
+    if(fb_id == '') datanotmepty=false;
+
+    var twitter_id = document.querySelector("input[name='twitter-id']").value;
+    if(twitter_id == '') datanotmepty=false;
+
+    var insta_id = document.querySelector("input[name='insta-id']").value;
+    if(insta_id == '') datanotmepty=false;
+
+    var password = document.querySelector("input[name='password']").value;
+    if(password == '') datanotmepty=false;
+    
+    var confirm_password = document.querySelector("input[name='confirm_password']").value;
+    var accept_terms = document.getElementById('accept_terms').checked;
+      
+    if(password == confirm_password && accept_terms && datanotmepty) {
+        firebase.database().ref('User/'+ userid).once('value').then(function(snapshot) {
+            if(snapshot.exists()) {
+                alert('This user id already exists!');
+            }
+            else {
+                firebase.database().ref('User/' + userid).set({
+                    first_name : first_name,
+                    last_name : last_name,
+                    userid : userid,
+                    birth_date : birth_date,
+                    nation : nation,
+                    religion : religion,
+                    work : work,
+                    email : email,
+                    phone : phone,
+                    fb_id : fb_id,
+                    twitter_id : twitter_id,
+                    insta_id : insta_id,
+                    password : password,
+                    }, function(error) {
+                    if (error) {
+                        // The write failed...
+                    }
+                    else {
+                        alert("DONE");
+                    }
+                });
+            }
+        }, function(error) {
+            if(error) {
+
+            }
+            else {
+
+            }
+        });
+    }
+    else {
+        alert("Please give correct data and accept the terms and policies!");
+    }
+}
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
