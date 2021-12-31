@@ -284,9 +284,10 @@ var rendercomments = function () {
 
 var addcomment = function () {
     var comment_text = document.getElementById('comment-text').value;
+    document.getElementById('comment-text').value = "";
     var d = new Date().toString();
     //console.log(new Date().toString());
-    var userid = "Anonymous" + Math.floor(Math.random() * 400) + 101;
+    var userid = "Anonymous" + (Math.floor(Math.random() * 400) + 101);
     firebase.database().ref('Comments/' + userid).set({
         userid : userid,
         date : d,
