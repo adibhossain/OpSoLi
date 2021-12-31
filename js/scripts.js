@@ -236,6 +236,71 @@ var signup = function (e) {
     }
 }
 
+var chapter_view = function () {
+    // chapter-title chapter-text description start_read pager
+    document.getElementById('chapter-title').innerHTML = 'Chapter 1' + ': The Awakening';
+    document.getElementById('description').style.display = "none";
+    document.getElementById('chapter-text').style.display = "block";
+    document.getElementById('start_read').style.display = "none";
+    document.getElementById('pager').style.display = "block";
+}
+
+var trigger_night = function () {
+    var nightmode = document.getElementById('nightmode').checked;
+    if(nightmode) {
+        document.getElementById('main-content').style.backgroundColor = "#212529";
+        document.getElementById('pager').style.backgroundColor = "#212529";
+        document.getElementById('main-content').style.color = "white";
+    }
+    else {
+        document.getElementById('main-content').style.backgroundColor = "white";
+        document.getElementById('pager').style.backgroundColor = "white";
+        document.getElementById('main-content').style.color = "#212529";
+    }
+}
+
+var rendercomments = function () {
+    if(document.getElementById('commentsloaded') == null) return;
+    //console.log('inside rendercomments');
+    firebase.database().ref('Comments/').once('value').then(function(snapshot) {
+        document.getElementById('commentsloaded').innerHTML = "";
+        snapshot.forEach(function(child) {
+            document.getElementById('nocomments').style.display = "none";
+            //console.log(child.val().userid + " " + child.val().date + " " + child.val().comment);
+            var default_comment = document.getElementById('default-comment').cloneNode(true);
+            default_comment.children[0].children[0].innerHTML = child.val().userid;
+            default_comment.children[0].children[1].innerHTML = child.val().date;
+            default_comment.children[1].innerHTML = child.val().comment;
+            default_comment.style.display = "block";
+            document.getElementById('commentsloaded').appendChild(default_comment);
+        });
+        }, function(error) {
+            if (error) {
+            } else {
+
+            }
+    });
+}
+
+var addcomment = function () {
+    var comment_text = document.getElementById('comment-text').value;
+    var d = new Date().toString();
+    //console.log(new Date().toString());
+    var userid = "Anonymous" + Math.floor(Math.random() * 400) + 101;
+    firebase.database().ref('Comments/' + userid).set({
+        userid : userid,
+        date : d,
+        comment : comment_text
+      }, function(error) {
+        if (error) {
+          // The write failed...
+        } else {
+
+        }
+    });
+    rendercomments();
+}
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -252,7 +317,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     };
 
-
+    rendercomments();
     renderLogStatus();
     // Shrink the navbar 
     navbarShrink();

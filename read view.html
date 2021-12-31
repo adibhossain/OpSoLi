@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Read The Northern Lights</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/OpSoLi.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+        <script src="js/scripts.js"></script>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyB9Z9B5XgeSkj6zOutMoIXgpEgqSe14DvA",
+                authDomain: "opsoli-18.firebaseapp.com",
+                databaseURL: "https://opsoli-18-default-rtdb.firebaseio.com",
+                projectId: "opsoli-18",
+                storageBucket: "opsoli-18.appspot.com",
+                messagingSenderId: "987624330164",
+                appId: "1:987624330164:web:694248020c8652ee5b98e1",
+                measurementId: "G-M33V6Q2672"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <div class="btn-group" id="plus">
+                    <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                        <img src="assets/plus.ico" alt="plus">
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li class="dropdown-item">Create:</li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Story</a></li>
+                    <li><a class="dropdown-item" href="#">Character</a></li>
+                    <li><a class="dropdown-item" href="#">World</a></li>
+                    <li><a class="dropdown-item" href="#">Lore</a></li>
+                    <li><a class="dropdown-item" href="#">Misc</a></li>
+                    </ul>
+                </div>
+  
+                <a class="navbar-brand" href="#" onclick="visit('index.html')"><img src="assets/img/OpSoLi Logo.png" alt="OpSoLi" /></a>
+
+                
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                
+                <div class="input-group" id="discover-search-bar">
+                  <input type="text" class="form-control" id="searcher" placeholder="Discover..." aria-label="Discover" aria-describedby="addon-wrapping" oninput="showX();" onkeyup="if(event.key == 'Enter') getSearchVal();">
+                  <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" id="del-search" onclick="clearSearch();">
+                      <i class="fa fa-times"></i>
+                  </button>
+                  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                      <option selected>Story</option>
+                      <option value="1">Character</option>
+                      <option value="2">World</option>
+                      <option value="3">Lore</option>
+                      <option value="4">Art</option>
+                      <option value="5">Author</option>
+                      <option value="6">Misc</option>
+                  </select>
+                  <button class="btn btn-link" type="button" onclick="getSearchVal();"><img src="assets/search.ico" alt="search"></button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img src="assets/hashtag.png" alt="hashtag">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li class="dropdown-item">#Today's Trending!</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Dijkstra's Horror(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">2069:The Future(Story)</a></li>
+                                <li><a class="dropdown-item" href="#">Kaya(Character)</a></li>
+                                <li><a class="dropdown-item" href="#">Departure(Art)</a></li>
+                                <li><a class="dropdown-item" href="#">Dimensions(Worlds)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="assets/favorite.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-out-icon"><a class="nav-link portfolio-link" data-bs-toggle="modal" href="#login"><img src="assets/user.png" alt=""></a></li>
+                        <li class="nav-item" id="logged-in-icon">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img class="propic mx-auto rounded-circle" src="assets/top authors/Kobi Adib.jpg" alt="kobi adib">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout();">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="head2" style="background-image: url(assets/top\ stories/1022-6000x3376.jpg); background-size: cover;">
+            <div class="container">
+                <div class="masthead-subheading text-uppercase" style="color: white; text-align: center;">
+                    <span id="title-of-content" style="font-size: 3.25rem;">The Northern Lights</span>
+                </div>
+                <a href="" class="react"><img src="assets/reacts/heart.png" alt=""></a>
+                <a href="" class="react"><img src="assets/reacts/dislike.png" alt=""></a>
+                <a href="" class="react"><img src="assets/reacts/favourite.png" alt=""></a>
+                <a href="" class="react"><img src="assets/reacts/plus-sign.png" alt=""></a>
+                <a href="" class="react"><img src="assets/reacts/warning.png" alt=""></a>
+                <span>
+                     | <span style="color: white;">70</span> Likes | <span style="color: white;">4</span> Dislikes | <span style="color: white;">15</span> Favourited | Rating <span style="color: white;">8.6/10</span> |
+                </span>
+                <label class="switch" style="float: right;">
+                    <input type="checkbox" id="nightmode" onchange="trigger_night();">
+                    <span class="slider round"></span>
+                </label>
+                <span style="float: right; vertical-align: center;">Night Mode&nbsp;</span>
+            </div>
+        </header>
+        <section class="page-section" id="main-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="jumbotron">
+                            <h1 class="display-4" id="chapter-title">Synopsis</h1>
+                            <p class="lead" id="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis excepturi reiciendis iure consequuntur quaerat ducimus repudiandae amet odit, vel adipisci placeat cumque iusto corrupti commodi esse vitae. Animi, expedita illum?</p>
+                            <hr class="my-4">
+                            <p id="chapter-text" style="display: none;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quam minus repellat blanditiis neque commodi possimus, reprehenderit sequi incidunt voluptate aut nesciunt aperiam eos quaerat alias nisi voluptatibus distinctio. Repudiandae!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem soluta qui cumque autem hic debitis, ex vitae excepturi, dolore amet nam. Aliquid enim itaque ea. Voluptas quam iusto ex rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ea veniam nesciunt error deserunt aliquam architecto consequuntur tempora, ipsum quo dignissimos qui necessitatibus dolore quod eveniet ut sit commodi. Molestiae.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam fugit, incidunt laudantium qui id, explicabo veniam consequuntur quo, totam nulla porro doloribus quidem tenetur vero sunt consectetur expedita voluptatibus.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quia impedit et totam expedita possimus, aperiam at dolorum, quae natus magnam velit, vel distinctio facere aliquid fugiat sunt cum. Architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est a recusandae in iste dignissimos consectetur iure ratione sequi id quia ut error reprehenderit deleniti, magnam, neque consequatur veniam? Incidunt, ut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero facilis exercitationem repudiandae? Quia, labore voluptatem. Quidem omnis voluptatem sequi accusantium unde quibusdam similique doloribus nemo ut laborum illum, aliquam voluptates!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic error doloremque magnam dignissimos itaque. Non voluptatibus aut nobis dolore doloribus, amet itaque temporibus nesciunt assumenda eligendi iure hic debitis totam?
+                                <br><br><br>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt reiciendis delectus fugiat, itaque aliquid quisquam beatae. Recusandae ratione id quis dolorum esse. Vitae, eveniet esse consectetur voluptatibus asperiores totam dolore?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quam minus repellat blanditiis neque commodi possimus, reprehenderit sequi incidunt voluptate aut nesciunt aperiam eos quaerat alias nisi voluptatibus distinctio. Repudiandae!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem soluta qui cumque autem hic debitis, ex vitae excepturi, dolore amet nam. Aliquid enim itaque ea. Voluptas quam iusto ex rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ea veniam nesciunt error deserunt aliquam architecto consequuntur tempora, ipsum quo dignissimos qui necessitatibus dolore quod eveniet ut sit commodi. Molestiae.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam fugit, incidunt laudantium qui id, explicabo veniam consequuntur quo, totam nulla porro doloribus quidem tenetur vero sunt consectetur expedita voluptatibus.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quia impedit et totam expedita possimus, aperiam at dolorum, quae natus magnam velit, vel distinctio facere aliquid fugiat sunt cum. Architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est a recusandae in iste dignissimos consectetur iure ratione sequi id quia ut error reprehenderit deleniti, magnam, neque consequatur veniam? Incidunt, ut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero facilis exercitationem repudiandae? Quia, labore voluptatem. Quidem omnis voluptatem sequi accusantium unde quibusdam similique doloribus nemo ut laborum illum, aliquam voluptates!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic error doloremque magnam dignissimos itaque. Non voluptatibus aut nobis dolore doloribus, amet itaque temporibus nesciunt assumenda eligendi iure hic debitis totam?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt reiciendis delectus fugiat, itaque aliquid quisquam beatae. Recusandae ratione id quis dolorum esse. Vitae, eveniet esse consectetur voluptatibus asperiores totam dolore?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quam minus repellat blanditiis neque commodi possimus, reprehenderit sequi incidunt voluptate aut nesciunt aperiam eos quaerat alias nisi voluptatibus distinctio. Repudiandae!
+                                <br><br><br>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem soluta qui cumque autem hic debitis, ex vitae excepturi, dolore amet nam. Aliquid enim itaque ea. Voluptas quam iusto ex rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ea veniam nesciunt error deserunt aliquam architecto consequuntur tempora, ipsum quo dignissimos qui necessitatibus dolore quod eveniet ut sit commodi. Molestiae.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam fugit, incidunt laudantium qui id, explicabo veniam consequuntur quo, totam nulla porro doloribus quidem tenetur vero sunt consectetur expedita voluptatibus.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quia impedit et totam expedita possimus, aperiam at dolorum, quae natus magnam velit, vel distinctio facere aliquid fugiat sunt cum. Architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est a recusandae in iste dignissimos consectetur iure ratione sequi id quia ut error reprehenderit deleniti, magnam, neque consequatur veniam? Incidunt, ut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero facilis exercitationem repudiandae? Quia, labore voluptatem. Quidem omnis voluptatem sequi accusantium unde quibusdam similique doloribus nemo ut laborum illum, aliquam voluptates!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic error doloremque magnam dignissimos itaque. Non voluptatibus aut nobis dolore doloribus, amet itaque temporibus nesciunt assumenda eligendi iure hic debitis totam?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt reiciendis delectus fugiat, itaque aliquid quisquam beatae. Recusandae ratione id quis dolorum esse. Vitae, eveniet esse consectetur voluptatibus asperiores totam dolore?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quam minus repellat blanditiis neque commodi possimus, reprehenderit sequi incidunt voluptate aut nesciunt aperiam eos quaerat alias nisi voluptatibus distinctio. Repudiandae!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem soluta qui cumque autem hic debitis, ex vitae excepturi, dolore amet nam. Aliquid enim itaque ea. Voluptas quam iusto ex rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ea veniam nesciunt error deserunt aliquam architecto consequuntur tempora, ipsum quo dignissimos qui necessitatibus dolore quod eveniet ut sit commodi. Molestiae.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam fugit, incidunt laudantium qui id, explicabo veniam consequuntur quo, totam nulla porro doloribus quidem tenetur vero sunt consectetur expedita voluptatibus.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quia impedit et totam expedita possimus, aperiam at dolorum, quae natus magnam velit, vel distinctio facere aliquid fugiat sunt cum. Architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est a recusandae in iste dignissimos consectetur iure ratione sequi id quia ut error reprehenderit deleniti, magnam, neque consequatur veniam? Incidunt, ut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero facilis exercitationem repudiandae? Quia, labore voluptatem. Quidem omnis voluptatem sequi accusantium unde quibusdam similique doloribus nemo ut laborum illum, aliquam voluptates!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic error doloremque magnam dignissimos itaque. Non voluptatibus aut nobis dolore doloribus, amet itaque temporibus nesciunt assumenda eligendi iure hic debitis totam?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt reiciendis delectus fugiat, itaque aliquid quisquam beatae. Recusandae ratione id quis dolorum esse. Vitae, eveniet esse consectetur voluptatibus asperiores totam dolore?
+                            </p>
+                            <p class="lead" id="start_read">
+                              <a class="btn btn-primary btn-lg" href="#" role="button" onclick="chapter_view();">Start reading</a>
+                            </p>
+                        </div>
+                        <br>
+                        <nav aria-label="Page navigation example" id="pager" style="display: none;">
+                            <ul class="pagination justify-content-center">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </li>
+                            </ul>
+                        </nav>
+                        <div class="container mt-5 mb-5 w-100">
+                            <div class="d-flex justify-content-center row">
+                                <div class="d-flex flex-column col-md-12">
+                                    <div class="d-flex flex-row align-items-center text-left comment-top p-2 border-bottom px-4">
+                                        <div class="d-flex flex-column ml-3">
+                                            <div class="d-flex flex-row post-title">
+                                                <h2>Comments</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="coment-bottom p-2 px-4">
+                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="assets/user.png" width="38">&nbsp;&nbsp;<input type="text" id="comment-text" class="form-control mr-3" placeholder="Add comment">&nbsp;<button class="btn btn-primary" type="button" onclick="addcomment();">Comment</button></div>
+                                        <div class="commented-section mt-2" id="default-comment" style="display: none;">
+                                            <div class="d-flex flex-row align-items-center commented-user">
+                                                <h5 class="mr-2">Corey oates</h5>&nbsp;&nbsp;<span class="mb-1 ml-2">4 hours ago</span>
+                                            </div>
+                                            <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                                            <div class="reply-section">
+                                                <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">&nbsp;10</span><span class="dot ml-2"></span>
+                                                    <h6 class="ml-2 mt-1">&nbsp;&nbsp;Reply</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="nocomments">
+                                            <div class="d-flex flex-row align-items-center text-left comment-top p-2 border-bottom px-4">
+                                                <div class="d-flex flex-column ml-3">
+                                                    <div class="d-flex flex-row post-title">
+                                                        <h2>No comment to show</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="commentsloaded">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <nav id="sideNav">
+                            <h4><span class="">Derived Stories</span></h4>
+                            <br>
+                            <div class="container innerscroll">
+                                <ul style="list-style: none;">
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Times of us</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Colossal</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lamen</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Flames of war</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Sky is the limit</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                    <li class="list-er-item"><a style="text-decoration: none;" href="#">Lorem Title</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; OpSoLi 2021</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Help</a>
+                        <a class="link-dark text-decoration-none" href="#!">Report</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Log In modal popup-->
+        <div class="portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content mx-auto" style="text-align: left; width: 80%; padding: 0px; background-image: url('assets/img/Login.jpg'); background-repeat: no-repeat; background-size: 50%; height: 387px;">
+                  <div class="container">
+                      <div class="row justify-content-center">
+                          <div class="col-lg-12">
+                              <div class="modal-body">
+                                  <!-- Login & Sign Up details-->
+                                  <div class="container">
+                                      <div class="row body d-md-flex align-items-center justify-content-between">
+                                          <div class="col-6">
+                                              <div class="box-1 mt-md-0 mt-2" style="text-align: center;">
+                                                  <h3 class="masthead-heading py-3" id="signup-title">New here ? <br> Start your journey with us today !</h3>
+                                                  <button type="submit" class="btn btn-primary" onclick="document.location.href='sign up.html'">Sign Up</button>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class=" box-2 d-flex flex-column h-100" style="margin-left: 15px;">
+                                                  <h3 class="masthead-heading py-3" id="login-title" style="text-align: center; color: #212529;">Welcome Back !</h3>
+                                                  <form style="padding: 2px;">
+                                                      <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                      </div>
+                                                      <div class="form-group pt-3">
+                                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                      </div>
+                                                      <div class="form-group form-check pt-3">
+                                                        <input type="checkbox" class="form-check-input" id="remember-me">
+                                                        <label class="form-check-label" for="remember-me">Remember me</label>
+                                                        <span style="float: right;"><a href="#" id="forgor">Forgot Password?</a></span>
+                                                      </div>
+                                                      <div class="form-group pt-3 wrapper">
+                                                          <div class="custom-control custom-radio custom-control-inline col-2">
+                                                              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                                              <label class="custom-control-label" for="customRadioInline1">Author</label>
+                                                          </div>
+                                                          <div class="custom-control custom-radio custom-control-inline col-2">
+                                                              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                                              <label class="custom-control-label" for="customRadioInline2">Admin</label>
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <div class="pt-3" style="text-align: center;"><button type="button" class="btn btn-primary" onclick="login();">Log In</button></div>
+                                                  </form>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <!-- Back to top button -->
+        <button type="button" class="btn btn-warning btn-floating" id="btn-back-to-top">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
+    </body>
+</html>
