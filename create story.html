@@ -95,7 +95,22 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#"><img src="assets/favorite.png" alt=""></a></li>
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <img src="assets/favorite.png" alt="favourite">
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li class="dropdown-item">Favourites</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">The Northern Lights</a></li>
+                                <li><a class="dropdown-item" href="#">Tribal Cold</a></li>
+                                <li><a class="dropdown-item" href="#">Chainsaw Man</a></li>
+                                <li><a class="dropdown-item" href="#">Liquid Air</a></li>
+                                <li><a class="dropdown-item" href="#">Virgo</a></li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-item" id="logged-out-icon"><a class="nav-link portfolio-link" data-bs-toggle="modal" href="#login"><img src="assets/user.png" alt=""></a></li>
                         <li class="nav-item" id="logged-in-icon">
                             <div class="btn-group">
@@ -103,7 +118,7 @@
                                     <img class="propic mx-auto rounded-circle" src="assets/top authors/Kobi Adib.jpg" alt="kobi adib">
                                 </button>
                                 <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="visit('author view.html');">Profile</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="logout();">Log Out</a></li>
                                 </ul>
                             </div>
@@ -230,7 +245,7 @@
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Help</a>
+                        <a class="link-dark text-decoration-none me-3" href="#!" onclick="visit('faq.html');">Help</a>
                         <a class="link-dark text-decoration-none" href="#!">Report</a>
                     </div>
                 </div>

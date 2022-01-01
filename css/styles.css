@@ -11901,12 +11901,12 @@ img.propic {
   top: 40%;
   bottom: 45px; /* added */
   min-height: 20%;
-  max-height: 25%;
+  max-height: 20%;
 }
 
 .innerscroll {
   overflow-y: scroll;
-  max-height: 90%;
+  max-height: 75%;
   width: 100%;
 }
 
