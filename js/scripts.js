@@ -310,7 +310,7 @@ var showchapter = function (chapno) {
 
 var addchapter = function () {
     var chapno = document.getElementById('chapter-list').querySelectorAll("li").length;
-    var litag = document.getElementById('default-component').cloneNode(true);
+    var litag = document.getElementById('default-chapno').cloneNode(true);
     litag.style.display = "block";
     litag.childNodes[0].innerHTML = 'Chapter #' + chapno;
     document.getElementById('chapter-list').appendChild(litag);

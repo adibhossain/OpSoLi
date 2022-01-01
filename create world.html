@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Create Story</title>
+        <title>Create World</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/OpSoLi.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -116,7 +116,7 @@
         <header class="head2" style="background-image: url(assets/img/header-bg.jpg); background-size: cover;">
             <div class="container">
                 <div class="masthead-subheading text-uppercase" style="color: #ffc800; text-align: center;">
-                    <span id="title-of-content" style="font-size: 3.25rem;">Create Story</span>
+                    <span id="title-of-content" style="font-size: 3.25rem;">Create World</span>
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning" onclick="document.getElementById('add-story').style.display = 'block';">New</button>
@@ -131,7 +131,7 @@
         </header>
         <section class="page-section" id="main-content" style="background-image: url(assets/img/crumpled-bg.jpg); background-size: cover;">
             <div class="masthead-subheading text-uppercase" style="color: #ffc800; text-align: center; display: none;" id="afterpublish">
-                <span style="font-size: 3.25rem;">Your Story is waiting to be approved by an admin...</span>
+                <span style="font-size: 3.25rem;">Your World is waiting to be approved by an admin...</span>
             </div>
             <div class="container mx-auto" style="margin: 10px; display: none;" id="add-story">
                 <div class="row mx-auto" style="margin: 10px;">
@@ -141,78 +141,29 @@
                                 <input type="text" class="form-control" name="title" placeholder="Title" required="required">
                             </div>
                             <div class="form-group" style="padding: 10px;">
-                                <label for="synopsis">Synopsis:</label>
-                                <textarea id="synopsis" name="synopsis" rows="4" cols="50"></textarea> 
-                            </div>
-                            <div class="form-group" style="padding: 10px;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">Components</button>
-                                    <ul class="dropdown-menu" id="components">
-                                        <li style="display: none;" id="default-component"><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);"></a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">The main charcter</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">Kingdom of Decasca</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">Scribe's Woe</a></li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">+</button>
-                                    <ul class="dropdown-menu" id="catalogue">
-                                        <li style="display: none;" id="default-catalogue"><a class="dropdown-item" href="#" onclick="addcatalogue(this);">Kaya</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Kaya</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Prisoners of Az'gul</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Blood Coins</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-group" style="padding: 10px;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">Chapters</button>
-                                    <ul class="dropdown-menu" id="chapter-list">
-                                        <li id="default-chapno" style="display: none;"><a class="dropdown-item" href="#" onclick="showchapter(this.innerHTML);">Chapter #0</a></li>
-                                    </ul>
-                                </div>
-                                <button type="button" class="btn btn-warning" onclick="addchapter();">+</button>
+                                <label for="description">Description:</label>
+                                <textarea id="description" name="description" rows="4" cols="50"></textarea> 
                             </div>
                         </form>
                     </div>
                     <div class="col-2"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label class="form-group-text" for="inputGroupSelect01" style="font-size: 1.5rem; padding: 10px;">Add Cover Photo</label>
+                            <label class="form-group-text" for="inputGroupSelect01" style="font-size: 1.5rem; padding: 10px;">+ Photo (Optional)</label>
                         </div>
                         <br>
-                        <img src="assets/img/addcover.png" alt="Add cover" id="profile-img" style="height: 100px; width: 200px;" onclick="document.getElementById('img-input').click();">
+                        <img src="assets/img/addcover.png" alt="Add photo" id="profile-img" style="height: 100px; width: 200px;" onclick="document.getElementById('img-input').click();">
                         <input style="display: none;" type="file" id="img-input" name="img" accept="image/*" onchange="changeProfileImg();">
                     </div>
                 </div>
                 <hr class="my-4">
-                <div class="row mx-auto" style="margin: 10px; display: none;" id="chapter-write">
-                    <div class="col-12">
-                        <div class="card">
-                            <h5 class="card-header" style="background-color: #ffc800; color: white;"><span id="chapno">Chapter #1</span></h5>
-                            <div class="card-body">
-                                <form action="" style="padding: 5px;">
-                                    <div class="form-group" style="padding: 10px;">
-                                        <input type="text" class="form-control" name="chapter-title" placeholder="Chapter Title" required="required">
-                                    </div>
-                                    <div class="form-group" style="padding: 10px;">
-                                        <textarea id="chapter-text" name="chapter-text" rows="20" cols="121">Write your story here</textarea> 
-                                    </div>
-                                    <div class="form-group" style="padding: 10px;">
-                                        <button type="button" class="btn btn-warning">Save Chapter</button>
-                                    </div>
-                                </form>
-                            </div>
-                          </div>
-                    </div>
-                </div>
                 <br>
                 <div class="row mx-auto" style="margin: 10px;">
                     <div class="col-4"></div>
                     <div class="col-4" style="text-align: center;">
-                        <div class="btn-group mx-auto" style="padding: 10px; display: none;" id="savenpublish">
-                            <button type="button" class="btn btn-warning">Save Story</button>
-                            <button type="button" class="btn btn-warning" onclick="document.getElementById('afterpublish').style.display = 'block'; document.getElementById('add-story').style.display = 'none';">Publish Story</button>
+                        <div class="btn-group mx-auto" style="padding: 10px;" id="savenpublish">
+                            <button type="button" class="btn btn-warning">Save World</button>
+                            <button type="button" class="btn btn-warning" onclick="document.getElementById('afterpublish').style.display = 'block'; document.getElementById('add-story').style.display = 'none';">Publish World</button>
                         </div>
                     </div>
                     <div class="col-4"></div>
