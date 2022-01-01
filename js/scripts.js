@@ -302,6 +302,32 @@ var addcomment = function () {
     rendercomments();
 }
 
+var showchapter = function (chapno) {
+    document.getElementById('chapter-write').style.display = 'block';
+    document.getElementById('savenpublish').style.display = 'block';
+    document.getElementById('chapno').innerHTML = chapno;
+}
+
+var addchapter = function () {
+    var chapno = document.getElementById('chapter-list').querySelectorAll("li").length;
+    var litag = document.getElementById('default-component').cloneNode(true);
+    litag.style.display = "block";
+    litag.childNodes[0].innerHTML = 'Chapter #' + chapno;
+    document.getElementById('chapter-list').appendChild(litag);
+    showchapter(litag.childNodes[0].innerHTML);
+}
+
+var addcatalogue = function (listitem) {
+    var litag = document.getElementById('default-component').cloneNode(true);
+    litag.style.display = "block";
+    litag.childNodes[0].innerHTML = listitem;
+    document.getElementById('components').appendChild(litag);
+}
+
+var removecomponent = function (listitem) {
+    document.getElementById('components').removeChild(listitem);
+}
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
