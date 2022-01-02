@@ -246,7 +246,7 @@
                     </div>
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="#!" onclick="visit('faq.html');">Help</a>
-                        <a class="link-dark text-decoration-none" href="#!">Report</a>
+                        <a class="link-dark text-decoration-none" data-bs-toggle="modal" href="#report">Report</a>
                     </div>
                 </div>
             </div>
@@ -304,6 +304,72 @@
                             </div>
                         </div>
                     </div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                </div>
+            </div>
+        </div>
+        <!-- Report Modal -->
+        <div class="portfolio-modal modal fade" id="report" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-auto" style="text-align: left; width: 45%; padding: 0px;">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="modal-body" style="text-align: center;">
+                                    <!-- Report Body-->
+                                    <h2 class="text-uppercase">What's wrong ?</h2>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-4"></div>
+                                        <div class="col-4">
+                                            <ul class="list-unstyled" style="text-align: center;">
+                                                <li class="" style="text-align: left;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                        <label class="form-check-label" for="defaultCheck1">
+                                                          Violence and Profanity
+                                                        </label>
+                                                      </div>
+                                                      <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                                        <label class="form-check-label" for="defaultCheck2">
+                                                          Offensive Content
+                                                        </label>
+                                                      </div>
+                                                      <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                                        <label class="form-check-label" for="defaultCheck3">
+                                                          Copyright
+                                                        </label>
+                                                      </div>
+                                                      <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                                        <label class="form-check-label" for="defaultCheck4">
+                                                          Spam
+                                                        </label>
+                                                      </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-4"></div>
+                                    </div>
+                                    
+                                    <br>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <textarea id="other-reason" name="other-reason" rows="5" cols="30" placeholder="Other reason..."></textarea>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-primary btn-l text-uppercase" type="button">
+                                                Send
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
                 </div>
             </div>
         </div>
