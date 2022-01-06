@@ -49,19 +49,49 @@ var renderLogStatus = function () {
 }
 
 var login = function () {
-    var url = document.location.href;
-    url = fixHash(url);
-    var queryy = url.split('?');
-    url = queryy[0] + '?logstat=' + encodeURIComponent('true');
-    if(queryy.length==1 || queryy[1]=="") {
+    if(document.getElementById('customRadioInline1').checked) {
+        var url = document.location.href;
+        url = fixHash(url);
+        var queryy = url.split('?');
+        url = queryy[0] + '?logstat=' + encodeURIComponent('true');
+        if(queryy.length==1 || queryy[1]=="") {
+            document.location.href = url;
+            return;
+        }
+        var params = queryy[1].split('&');
+        for (var i = 1, l = params.length; i < l; i++) {
+            url = url + '&' + params[i];
+        }
         document.location.href = url;
-        return;
     }
-    var params = queryy[1].split('&');
-    for (var i = 1, l = params.length; i < l; i++) {
-        url = url + '&' + params[i];
+    else if(document.getElementById('customRadioInline2').checked) {
+        var email = document.getElementById('exampleInputEmail1').value;
+        var password = document.getElementById('exampleInputPassword1').value;
+
+        firebase.database().ref('Admin').once('value').then(function(snapshot) {
+            if(snapshot.exists()) {
+                if(snapshot.val().email == email && snapshot.val().password == password) {
+                    var url = 'admin panel.html';
+                    url = url + '?logstat=' + encodeURIComponent('true');
+                    document.location.href = url;
+                }
+                else {
+
+                }
+            }
+            else {
+                
+            }
+        }, function(error) {
+            if(error) {
+
+            }
+            else {
+
+            }
+        });
     }
-    document.location.href = url;
+    
 };
 
 var logout = function () {
