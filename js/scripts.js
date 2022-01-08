@@ -320,10 +320,12 @@ var addcomment = function () {
     }
     if(onlyspace) return;
     document.getElementById('comment-text').value = "";
-    var d = new Date().toString();
+    var date = new Date();
+    var d = date.toString();
+    var timestamp = date.getTime();
     //console.log(new Date().toString());
     var userid = "Anonymous" + (Math.floor(Math.random() * 400) + 101);
-    firebase.database().ref('Comments/' + userid).set({
+    firebase.database().ref('Comments/' + timestamp).set({
         userid : userid,
         date : d,
         comment : comment_text
@@ -338,18 +340,92 @@ var addcomment = function () {
 }
 
 var showchapter = function (chapno) {
-    document.getElementById('chapter-write').style.display = 'block';
+    chapno = chapno[chapno.length-1];
+    var cur_chapno = document.getElementById('cur-chapno').innerHTML;
+    if(cur_chapno != 0) {
+        document.getElementById('chapter-text' + cur_chapno).value = "";
+        var param = "input[name='" + "chapter-title" + cur_chapno + "']";
+        document.querySelector(param).value = "";
+        document.getElementById('chapter-write' + cur_chapno).style.display = "none";
+    }
+
+    var chap = document.getElementById('chapter-write' + chapno);
+    document.getElementById('chapter-text' + chapno).value = document.getElementById('saved-chapter-text' + chapno).value;
+    var param1 = "input[name='" + "chapter-title" + chapno + "']";
+    var savedparam = "input[name='" + "saved-chapter-title" + chapno + "']";
+    document.querySelector(param1).value = document.querySelector(savedparam).value;
+    chap.style.display = 'block';
+
     document.getElementById('savenpublish').style.display = 'block';
-    document.getElementById('chapno').innerHTML = chapno;
+    document.getElementById('cur-chapno').innerHTML = chapno;
 }
 
 var addchapter = function () {
     var chapno = document.getElementById('chapter-list').querySelectorAll("li").length;
+
+    var newchap = document.getElementById('chapter-write').cloneNode(true);
+    newchap.style.display = "block";
+    newchap.id = 'chapter-write' + chapno;
+    newchap.children[0].children[0].children[0].children[0].innerHTML = chapno;
+    newchap.children[0].children[0].children[0].children[0].id = 'chapno' + chapno;
+    newchap.children[0].children[0].children[1].children[0].children[0].children[0].name = 'chapter-title' + chapno;
+    newchap.children[0].children[0].children[1].children[0].children[0].children[0].id = 'chapter-title' + chapno;
+    newchap.children[0].children[0].children[1].children[0].children[1].children[0].name = 'chapter-text' + chapno;
+    newchap.children[0].children[0].children[1].children[0].children[1].children[0].id = 'chapter-text' + chapno;
+    document.getElementById('chapter-parts').appendChild(newchap);
+
+    var savednewchap = document.getElementById('saved-chapter-write').cloneNode(true);
+    savednewchap.children[0].children[0].children[0].children[0].innerHTML = chapno;
+    savednewchap.children[0].children[0].children[0].children[0].id = 'saved-chapno' + chapno;
+    savednewchap.children[0].children[0].children[1].children[0].children[0].children[0].name = 'saved-chapter-title' + chapno;
+    savednewchap.children[0].children[0].children[1].children[0].children[0].children[0].id = 'saved-chapter-title' + chapno;
+    savednewchap.children[0].children[0].children[1].children[0].children[1].children[0].name = 'saved-chapter-text' + chapno;
+    savednewchap.children[0].children[0].children[1].children[0].children[1].children[0].id = 'saved-chapter-text' + chapno;
+    document.getElementById('saved-chapter-parts').appendChild(savednewchap);
+
     var litag = document.getElementById('default-chapno').cloneNode(true);
     litag.style.display = "block";
-    litag.childNodes[0].innerHTML = 'Chapter #' + chapno;
+    litag.children[0].innerHTML = 'Chapter #' + chapno;
     document.getElementById('chapter-list').appendChild(litag);
-    showchapter(litag.childNodes[0].innerHTML);
+
+    showchapter(litag.children[0].innerHTML);
+}
+
+var savechapter = function () {
+    var cur_chapno = document.getElementById('cur-chapno').innerHTML;
+    document.getElementById('saved-chapter-text' + cur_chapno).value = document.getElementById('chapter-text' + cur_chapno).value;
+    var param1 = "input[name='" + "chapter-title" + cur_chapno + "']";
+    var savedparam = "input[name='" + "saved-chapter-title" + cur_chapno + "']";
+    document.querySelector(savedparam).value = document.querySelector(param1).value;
+}
+
+var publishstory = function() {
+    var components = {};
+    for(var i=1;i<document.getElementById('components').children.length;i++) {
+        components['component' + i] = document.getElementById('components').children[i].children[0].innerHTML;
+    }
+    var chapters = {};
+    for(var i=1;i<document.getElementById('saved-chapter-parts').children.length;i++) {
+        chapters['chapter' + i] = {
+            chapter_title : document.getElementById('saved-chapter-parts').children[i].children[0].children[0].children[1].children[0].children[0].children[0].value,
+            chapter_text : document.getElementById('saved-chapter-parts').children[i].children[0].children[0].children[1].children[0].children[1].children[0].value
+        };
+    }
+    var title = document.querySelector("input[name='title']").value;
+    firebase.database().ref('Pending Stories/' + title).set({
+        title : title,
+        synopsis : document.querySelector("textarea[name='synopsis']").value,
+        components : components,
+        chapters : chapters
+      }, function(error) {
+        if (error) {
+          // The write failed...
+        } else {
+
+        }
+    });
+    document.getElementById('afterpublish').style.display = 'block';
+    document.getElementById('add-story').style.display = 'none';
 }
 
 var addcatalogue = function (listitem) {

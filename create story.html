@@ -163,19 +163,19 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">Components</button>
                                     <ul class="dropdown-menu" id="components">
-                                        <li style="display: none;" id="default-component"><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);"></a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">The main charcter</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">Kingdom of Decasca</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="removecomponent(this.parentNode);">Scribe's Woe</a></li>
+                                        <li style="display: none;" id="default-component"><a class="dropdown-item" href="#!" onclick="removecomponent(this.parentNode);"></a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="removecomponent(this.parentNode);">The main charcter</a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="removecomponent(this.parentNode);">Kingdom of Decasca</a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="removecomponent(this.parentNode);">Scribe's Woe</a></li>
                                     </ul>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">+</button>
                                     <ul class="dropdown-menu" id="catalogue">
-                                        <li style="display: none;" id="default-catalogue"><a class="dropdown-item" href="#" onclick="addcatalogue(this);">Kaya</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Kaya</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Prisoners of Az'gul</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="addcatalogue(this.innerHTML);">Blood Coins</a></li>
+                                        <li style="display: none;" id="default-catalogue"><a class="dropdown-item" href="#!" onclick="addcatalogue(this);">Kaya</a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="addcatalogue(this.innerHTML);">Kaya</a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="addcatalogue(this.innerHTML);">Prisoners of Az'gul</a></li>
+                                        <li><a class="dropdown-item" href="#!" onclick="addcatalogue(this.innerHTML);">Blood Coins</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">Chapters</button>
                                     <ul class="dropdown-menu" id="chapter-list">
-                                        <li id="default-chapno" style="display: none;"><a class="dropdown-item" href="#" onclick="showchapter(this.innerHTML);">Chapter #0</a></li>
+                                        <li id="default-chapno" style="display: none;"><a class="dropdown-item" href="#!" onclick="showchapter(this.innerHTML);">Chapter #0</a></li>
                                     </ul>
                                 </div>
                                 <button type="button" class="btn btn-warning" onclick="addchapter();">+</button>
@@ -201,24 +201,48 @@
                     </div>
                 </div>
                 <hr class="my-4">
-                <div class="row mx-auto" style="margin: 10px; display: none;" id="chapter-write">
-                    <div class="col-12">
-                        <div class="card">
-                            <h5 class="card-header" style="background-color: #ffc800; color: white;"><span id="chapno">Chapter #1</span></h5>
-                            <div class="card-body">
-                                <form action="" style="padding: 5px;">
-                                    <div class="form-group" style="padding: 10px;">
-                                        <input type="text" class="form-control" name="chapter-title" placeholder="Chapter Title" required="required">
-                                    </div>
-                                    <div class="form-group" style="padding: 10px;">
-                                        <textarea id="chapter-text" name="chapter-text" rows="20" cols="121">Write your story here</textarea> 
-                                    </div>
-                                    <div class="form-group" style="padding: 10px;">
-                                        <button type="button" class="btn btn-warning">Save Chapter</button>
-                                    </div>
-                                </form>
+                <div id="chapter-parts">
+                    <div class="row mx-auto" style="margin: 10px; display: none;" id="chapter-write">
+                        <div class="col-12">
+                            <div class="card">
+                                <h5 class="card-header" style="background-color: #ffc800; color: white;">Chapter #<span id="chapno">1</span></h5>
+                                <div class="card-body">
+                                    <form action="" style="padding: 5px;">
+                                        <div class="form-group" style="padding: 10px;">
+                                            <input id="chapter-title" type="text" class="form-control" name="chapter-title" placeholder="Chapter Title" required="required">
+                                        </div>
+                                        <div class="form-group" style="padding: 10px;">
+                                            <textarea id="chapter-text" name="chapter-text" rows="20" cols="121" placeholder="Write your story here" style="resize: none;"></textarea> 
+                                        </div>
+                                        <div class="form-group" style="padding: 10px;">
+                                            <button type="button" class="btn btn-warning" onclick="savechapter();">Save Chapter</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="saved-chapter-parts" style="display: none;">
+                    <div class="row mx-auto" style="margin: 10px; display: none;" id="saved-chapter-write">
+                        <div class="col-12">
+                            <div class="card">
+                                <h5 class="card-header" style="background-color: #ffc800; color: white;">Chapter #<span id="saved-chapno">1</span></h5>
+                                <div class="card-body">
+                                    <form action="" style="padding: 5px;">
+                                        <div class="form-group" style="padding: 10px;">
+                                            <input id="saved-chapter-title" type="text" class="form-control" name="saved-chapter-title" placeholder="Chapter Title" required="required">
+                                        </div>
+                                        <div class="form-group" style="padding: 10px;">
+                                            <textarea id="saved-chapter-text" name="saved-chapter-text" rows="20" cols="121" placeholder="Write your story here" style="resize: none;"></textarea> 
+                                        </div>
+                                        <div class="form-group" style="padding: 10px;">
+                                            <button type="button" class="btn btn-warning" onclick="savechapter();">Save Chapter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -227,13 +251,14 @@
                     <div class="col-4" style="text-align: center;">
                         <div class="btn-group mx-auto" style="padding: 10px; display: none;" id="savenpublish">
                             <button type="button" class="btn btn-warning">Save Story</button>
-                            <button type="button" class="btn btn-warning" onclick="document.getElementById('afterpublish').style.display = 'block'; document.getElementById('add-story').style.display = 'none';">Publish Story</button>
+                            <button type="button" class="btn btn-warning" onclick="publishstory();">Publish Story</button>
                         </div>
                     </div>
                     <div class="col-4"></div>
                 </div>
             </div>
         </section>
+        <div id="cur-chapno" style="display: none;">0</div>
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
