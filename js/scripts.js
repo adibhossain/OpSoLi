@@ -314,6 +314,11 @@ var rendercomments = function () {
 
 var addcomment = function () {
     var comment_text = document.getElementById('comment-text').value;
+    var onlyspace = 1;
+    for(var i=0;i<comment_text.length;i++) {
+        if(comment_text[i]!=' ') onlyspace = 0;
+    }
+    if(onlyspace) return;
     document.getElementById('comment-text').value = "";
     var d = new Date().toString();
     //console.log(new Date().toString());
