@@ -411,17 +411,35 @@ var publishstory = function() {
             chapter_text : document.getElementById('saved-chapter-parts').children[i].children[0].children[0].children[1].children[0].children[1].children[0].value
         };
     }
+    var story_count,storyid;
     var title = document.querySelector("input[name='title']").value;
-    firebase.database().ref('Pending Stories/' + title).set({
-        title : title,
-        synopsis : document.querySelector("textarea[name='synopsis']").value,
-        components : components,
-        chapters : chapters
-      }, function(error) {
+    var userid = "Anonymous" + (Math.floor(Math.random() * 400) + 101);
+    firebase.database().ref('Globals').once('value').then(function(snapshot) {
+        story_count = parseInt(snapshot.val().story_count) + 1;
+        storyid = "story" + story_count;
+        firebase.database().ref('Globals').set({
+            story_count : story_count
+        }, function(error) {
+            if (error) {
+            } else {
+            }
+        });
+        firebase.database().ref('Pending Stories/' + storyid).set({
+            userid : userid,
+            title : title,
+            synopsis : document.querySelector("textarea[name='synopsis']").value,
+            components : components,
+            chapters : chapters
+          }, function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+    
+            }
+        });
+    },function(error) {
         if (error) {
-          // The write failed...
         } else {
-
         }
     });
     document.getElementById('afterpublish').style.display = 'block';
