@@ -11450,10 +11450,12 @@ a.react {
 
 a.react:hover , button.dropdown-toggle:hover , a img:hover {
   opacity: 0.3;
+  transition: opacity ease-in-out 0.25s;
 }
 
 a.navbar-brand img:hover {
   opacity: 1;
+  transition: opacity ease-in-out 0.25s;
 }
 
 header.head2 {
