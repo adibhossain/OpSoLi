@@ -136,6 +136,7 @@ var getSearchVal = function () {
 };
 
 var setSearchVal = function () {
+    if(document.getElementById('searched')==null) return;
     var url = document.location.href;
     url = fixHash(url);
     var queryy = url.split('?');
@@ -426,6 +427,7 @@ var publishstory = function() {
         });
         firebase.database().ref('Pending Stories/' + storyid).set({
             userid : userid,
+            storyid : storyid,
             title : title,
             synopsis : document.querySelector("textarea[name='synopsis']").value,
             components : components,
@@ -444,6 +446,31 @@ var publishstory = function() {
     });
     document.getElementById('afterpublish').style.display = 'block';
     document.getElementById('add-story').style.display = 'none';
+}
+
+var renderpendingstories = function() {
+    if(document.getElementById('pending-stories') == null) return;
+    //console.log('inside pending-stories');
+    firebase.database().ref('Pending Stories/').once('value').then(function(snapshot) {
+        document.getElementById('pending-stories-view').innerHTML = "";
+        var i=0;
+        snapshot.forEach(function(child) {
+            i=i+1;
+            var pending_story = document.getElementById('pending-story').cloneNode(true);
+            pending_story.children[0].children[0].children[0].innerHTML = child.val().title;
+            pending_story.children[0].children[1].children[0].innerHTML = child.val().userid;
+            pending_story.children[0].children[4].innerHTML = child.val().synopsis;
+            pending_story.children[2].innerHTML = child.val().storyid;
+            pending_story.id = 'pending_story'+i;
+            pending_story.style.display = "block";
+            document.getElementById('pending-stories-view').appendChild(pending_story);
+        });
+        }, function(error) {
+            if (error) {
+            } else {
+
+            }
+    });
 }
 
 var addcatalogue = function (listitem) {
@@ -474,6 +501,7 @@ window.addEventListener('DOMContentLoaded', event => {
     };
 
     rendercomments();
+    renderpendingstories();
     renderLogStatus();
     // Shrink the navbar 
     navbarShrink();
