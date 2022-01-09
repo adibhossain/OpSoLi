@@ -418,8 +418,10 @@ var publishstory = function() {
     firebase.database().ref('Globals').once('value').then(function(snapshot) {
         story_count = parseInt(snapshot.val().story_count) + 1;
         storyid = "story" + story_count;
+        var question_count = snapshot.val().question_count;
         firebase.database().ref('Globals').set({
-            story_count : story_count
+            story_count : story_count,
+            question_count : question_count
         }, function(error) {
             if (error) {
             } else {
@@ -473,6 +475,60 @@ var renderpendingstories = function() {
     });
 }
 
+var submitquestion = function() {
+    var question = document.getElementById('question').value;
+    document.getElementById('question').value = "";
+    firebase.database().ref('Globals').once('value').then(function(snapshot) {
+        var question_count = parseInt(snapshot.val().question_count) + 1;
+        var story_count = snapshot.val().story_count;
+        firebase.database().ref('Globals').set({
+            story_count : story_count,
+            question_count: question_count
+        }, function(error) {
+            if (error) {
+            } else {
+            }
+        });
+        firebase.database().ref('Pending FAQs/' + question_count).set({
+            question: question,
+            question_count: question_count
+          }, function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+    
+            }
+        });
+    },function(error) {
+        if (error) {
+        } else {
+        }
+    });
+}
+
+var renderpendingquestions = function() {
+    if(document.getElementById('faqs') == null) return;
+    //console.log('inside pending-faqs');
+    firebase.database().ref('Pending FAQs/').once('value').then(function(snapshot) {
+        document.getElementById('faqs-view').innerHTML = "";
+        var i=0;
+        snapshot.forEach(function(child) {
+            i=i+1;
+            var faq = document.getElementById('faq').cloneNode(true);
+            faq.children[0].children[0].children[0].innerHTML = child.val().question;
+            faq.children[2].innerHTML = child.val().question_count;
+            faq.id = 'faq'+i;
+            faq.style.display = "block";
+            document.getElementById('faqs-view').appendChild(faq);
+        });
+        }, function(error) {
+            if (error) {
+            } else {
+
+            }
+    });
+} 
+
 var addcatalogue = function (listitem) {
     var litag = document.getElementById('default-component').cloneNode(true);
     litag.style.display = "block";
@@ -502,6 +558,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     rendercomments();
     renderpendingstories();
+    renderpendingquestions();
     renderLogStatus();
     // Shrink the navbar 
     navbarShrink();
