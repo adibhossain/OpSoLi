@@ -14,6 +14,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
@@ -148,7 +149,7 @@
             </div>
         </header>
         <!-- Top Stories-->
-        <section class="page-section" id="top-stories">
+        <section class="page-section" id="top-stories" data-aos="fade-right">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top stories.html');">Top Stories</a></h2>
@@ -200,7 +201,7 @@
             </div>
         </section>
         <!-- Top Arts Grid-->
-        <section class="page-section bg-light" id="portfolio">
+        <section class="page-section bg-light" id="portfolio" data-aos="fade-left">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top arts.html');">Top Arts</a></h2>
@@ -301,7 +302,7 @@
             </div>
         </section>
         <!-- Top Characters-->
-        <section class="page-section" id="top-characters">
+        <section class="page-section" id="top-characters" data-aos="zoom-in">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top characters.html');">Top Characters</a></h2>
@@ -333,7 +334,7 @@
             </div>
         </section>
         <!-- Top Worlds-->
-        <section class="page-section bg-light" id="top-worlds">
+        <section class="page-section bg-light" id="top-worlds" data-aos="zoom-out">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top worlds.html');">Top Worlds</a></h2>
@@ -385,7 +386,7 @@
             </div>
         </section>
         <!-- Top Lores-->
-        <section class="page-section" id="top-lores">
+        <section class="page-section" id="top-lores" data-aos="fade-up">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top lores.html');">Top Lores</a></h2>
@@ -437,7 +438,7 @@
             </div>
         </section>
         <!-- Top Authors-->
-        <section class="page-section bg-light" id="top-authors">
+        <section class="page-section bg-light" id="top-authors" data-aos="fade-down">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><a style="color: #212529;" href="#" onclick="visit('top authors.html');">Top Authors</a></h2>
@@ -842,5 +843,9 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
     </body>
 </html>
