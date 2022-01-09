@@ -478,6 +478,7 @@ var renderpendingstories = function() {
 var submitquestion = function() {
     var question = document.getElementById('question').value;
     document.getElementById('question').value = "";
+    if(question.length == 0) return;
     firebase.database().ref('Globals').once('value').then(function(snapshot) {
         var question_count = parseInt(snapshot.val().question_count) + 1;
         var story_count = snapshot.val().story_count;
@@ -529,6 +530,43 @@ var renderpendingquestions = function() {
     });
 } 
 
+var answerquestion = function(faq) {
+    var answer = faq.children[0].children[1].children[0].value;
+    if(answer.length == 0) return;
+    faq.children[0].children[1].children[0].value = "";
+    var question = faq.children[0].children[0].children[0].innerHTML;
+    var question_count = faq.children[2].innerHTML;
+    firebase.database().ref('Pending FAQs/' + question_count).remove();
+    firebase.database().ref('FAQs/' + question_count).set({
+        question: question,
+        question_count: question_count,
+        answer: answer
+    }, function(error) {
+        if (error) {
+          // The write failed...
+        } else {
+
+        }
+    });
+    document.getElementById('faqs-view').removeChild(faq);
+}
+
+var renderfaqs = function() {
+    if(document.getElementById('faqs-show')==null) return;
+    firebase.database().ref('FAQs/').once('value').then(function(snapshot) {
+        snapshot.forEach(function(child) {
+            var litag = document.getElementById('default-faq').cloneNode(true);
+            litag.children[0].innerHTML = "Q: " + child.val().question + "<br>" + "A: " + child.val().answer;
+            document.getElementById('faqs-show').appendChild(litag);
+        });
+        }, function(error) {
+            if (error) {
+            } else {
+
+            }
+    });
+}
+
 var addcatalogue = function (listitem) {
     var litag = document.getElementById('default-component').cloneNode(true);
     litag.style.display = "block";
@@ -559,6 +597,7 @@ window.addEventListener('DOMContentLoaded', event => {
     rendercomments();
     renderpendingstories();
     renderpendingquestions();
+    renderfaqs();
     renderLogStatus();
     // Shrink the navbar 
     navbarShrink();
