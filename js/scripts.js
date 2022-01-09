@@ -124,6 +124,12 @@ var visit = function (url) {
     document.location.href = url;
 }
 
+var visit_read = function (url,storyid,pend) {
+    var logstat = getLogStatus();
+    url = url + '?logstat=' + encodeURIComponent(logstat) + '&storyid=' + encodeURIComponent(storyid) + '&pend=' + encodeURIComponent(pend);
+    document.location.href = url;
+}
+
 var getSearchVal = function () {
     // var tmp = url.split('#');
     // url = tmp[0];
@@ -269,7 +275,7 @@ var signup = function (e) {
 
 var chapter_view = function () {
     // chapter-title chapter-text description start_read pager
-    document.getElementById('chapter-title').innerHTML = 'Chapter 1' + ': The Awakening';
+    document.getElementById('chapter-title').innerHTML = 'Chapter 1: ' + document.getElementById('chapter-title-real').innerHTML;
     document.getElementById('description').style.display = "none";
     document.getElementById('chapter-text').style.display = "block";
     document.getElementById('start_read').style.display = "none";
@@ -567,6 +573,34 @@ var renderfaqs = function() {
     });
 }
 
+var renderstory = function() {
+    if(document.title!='Read The Northern Lights') return;
+    var queries = getQueries().split('&');
+    var storyid = decodeURIComponent(queries[1].split('=')[1]);
+    var pend = decodeURIComponent(queries[2].split('=')[1]);
+    if(pend) {
+        firebase.database().ref('Pending Stories/'+storyid).once('value').then(function(snapshot) {
+            document.getElementById('title-of-content').innerHTML = snapshot.val().title;
+            document.title = "Read " + snapshot.val().title;
+            document.getElementById('userid').innerHTML = snapshot.val().userid;
+            document.getElementById('description').innerHTML = snapshot.val().synopsis;
+            document.getElementById('chapter-title-real').innerHTML = snapshot.val().chapters['chapter1'].chapter_title;
+            document.getElementById('chapter-text').innerHTML = snapshot.val().chapters['chapter1'].chapter_text;
+            document.getElementById('components').innerHTML = "";
+            for (const componentid in snapshot.val().components) {
+                 var component = document.getElementById('default-component').cloneNode(true);
+                 component.children[0].innerHTML = snapshot.val().components[componentid];
+                 component.style.display = "block";
+                 document.getElementById('components').appendChild(component);
+            }
+        },function(error) {
+            if (error) {
+            } else {
+            }
+        });
+    }
+}
+
 var addcatalogue = function (listitem) {
     var litag = document.getElementById('default-component').cloneNode(true);
     litag.style.display = "block";
@@ -598,6 +632,7 @@ window.addEventListener('DOMContentLoaded', event => {
     renderpendingstories();
     renderpendingquestions();
     renderfaqs();
+    renderstory();
     renderLogStatus();
     // Shrink the navbar 
     navbarShrink();
