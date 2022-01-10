@@ -26,6 +26,15 @@ var fixHash = function (url) {
     return tmp;
 }
 
+var addnewlines = function(text) {
+    var ret="";
+    for(var i=0;i<text.length;i++) {
+        if(text[i]=='\n') ret=ret+"<br>";
+        else ret=ret+text[i];
+    }
+    return ret;
+}
+
 var getLogStatus = function () {
     var url = document.location.href;
     url = fixHash(url);
@@ -576,6 +585,8 @@ var renderfaqs = function() {
 var renderstory = function() {
     if(document.title!='Read The Northern Lights') return;
     var queries = getQueries().split('&');
+    if(queries.length <= 1) return;
+    if(queries[1].split('=')[0] != 'storyid') return;
     var storyid = decodeURIComponent(queries[1].split('=')[1]);
     var pend = decodeURIComponent(queries[2].split('=')[1]);
     if(pend) {
@@ -583,9 +594,11 @@ var renderstory = function() {
             document.getElementById('title-of-content').innerHTML = snapshot.val().title;
             document.title = "Read " + snapshot.val().title;
             document.getElementById('userid').innerHTML = snapshot.val().userid;
-            document.getElementById('description').innerHTML = snapshot.val().synopsis;
+            var synopsis = addnewlines(snapshot.val().synopsis);
+            document.getElementById('description').innerHTML = synopsis;
             document.getElementById('chapter-title-real').innerHTML = snapshot.val().chapters['chapter1'].chapter_title;
-            document.getElementById('chapter-text').innerHTML = snapshot.val().chapters['chapter1'].chapter_text;
+            var chapter_text = addnewlines(snapshot.val().chapters['chapter1'].chapter_text);
+            document.getElementById('chapter-text').innerHTML = chapter_text;
             document.getElementById('components').innerHTML = "";
             for (const componentid in snapshot.val().components) {
                  var component = document.getElementById('default-component').cloneNode(true);
